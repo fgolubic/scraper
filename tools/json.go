@@ -2,11 +2,11 @@ package tools
 
 import (
 	"encoding/json"
-	"net/http"
 	"log"
+	"net/http"
 )
 
-func RespondWithJSON(w http.ResponseWriter, status int, payload interface{}){
+func RespondWithJSON(w http.ResponseWriter, status int, payload interface{}) {
 
 	dat, err := json.Marshal(payload)
 	if err != nil {
@@ -19,9 +19,8 @@ func RespondWithJSON(w http.ResponseWriter, status int, payload interface{}){
 
 	w.WriteHeader(status)
 	w.Write(dat)
-	
-}
 
+}
 
 func RespondWithError(w http.ResponseWriter, code int, msg string) {
 
@@ -34,8 +33,7 @@ func RespondWithError(w http.ResponseWriter, code int, msg string) {
 		Error string `json:"error"`
 	}
 
-
-	RespondWithJSON(w, code, errResponse {
+	RespondWithJSON(w, code, errResponse{
 		Error: msg,
 	})
 }
